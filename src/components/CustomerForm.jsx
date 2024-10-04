@@ -7,7 +7,7 @@ const CustomerForm = () => {
   // Customer Variables
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [phone, setPhone] = useState('')
   const [modalName, setModalName] = useState('')
 
   // Form State Variables
@@ -40,18 +40,22 @@ const CustomerForm = () => {
     setIsLoading(true)
     setError(null)
 
-    const user = {name, email, password}
-    console.log(user)
+    const customer = {
+      "customer_name": name, 
+      "email": email, 
+      "phone": phone
+    }
+    console.log(customer)
 
     try {
-      const response = await axios.post("https://fakestoreapi.com/users", user, {
+      const response = await axios.post("http://127.0.0.1:5000/customers", customer, {
         headers: {
           'Content-Type': 'application/json'
         }
       })
 
       const data = response.data;
-      console.log("User Created:", data)
+      console.log("Customer Created:", data)
 
       // Trigger popup with success message (modal)
       setShowSuccessModal(true)
@@ -60,7 +64,7 @@ const CustomerForm = () => {
       // Reset the form 
       setName('')
       setEmail('')
-      setPassword('')
+      setPhone('')
 
     } catch (error) {
 	    console.log("Error", error)
@@ -75,11 +79,11 @@ const CustomerForm = () => {
     // const errors = {
     //   "name": '',
     //   "email": '',
-    //   "password": ''
+    //   "phone": ''
     // }
     if (!name) errors.name = "Name is required"
     if (!email) errors.email = "Email is required"
-    if (!password) errors.password = "Password is required"
+    if (!phone) errors.phone = "Phone is required"
     return errors 
   }
 
@@ -110,17 +114,17 @@ const CustomerForm = () => {
 
         <br />
 
-        {/* Password section */}
-        <Form.Group controlId='formGroupPassword'>
-          <Form.Label>Password:</Form.Label>
-          <Form.Control type='password' value={password} onChange={(e) => setPassword(e.target.value) }/>
-          { errors?.password && <Alert>Password is required</Alert> }
+        {/* Phone section */}
+        <Form.Group controlId='formGroupPhone'>
+          <Form.Label>Phone:</Form.Label>
+          <Form.Control type='phone' value={phone} onChange={(e) => setPhone(e.target.value) }/>
+          { errors?.phone && <Alert>Phone is required</Alert> }
         </Form.Group>
 
         <br />
 
         <Button type='submit' disabled={isLoading}>
-          { isLoading ? 'Creating User...' : 'Create User' }
+          { isLoading ? 'Creating Customer...' : 'Create Customer' }
         </Button>
       </Form>
 

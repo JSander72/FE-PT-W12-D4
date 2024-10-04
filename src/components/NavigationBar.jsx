@@ -15,9 +15,12 @@ const NavigationBar = () => {
 
           {/* Nav.Link acts like a normal link (or a tag) */}
           {/* as={NavLink} applies bootstrap styling */}
-          <Nav.Link as={NavLink} to="/" activeClassName="active">Home</Nav.Link>
-          <Nav.Link as={NavLink} to="/customers" activeClassName="active">Customers</Nav.Link>
-          <Nav.Link as={NavLink} to="/add-customers" activeClassName="active">Add Customer</Nav.Link>
+          <Nav.Link as={NavLink} to="/" activeclassname="active">Home</Nav.Link>
+          <Nav.Link as={NavLink} to="/customers" activeclassname="active">Customers</Nav.Link>
+
+          <Nav.Link as={NavLink} to="/product-catalog" activeclassname="active">Product Catalog</Nav.Link>
+
+          <Nav.Link as={NavLink} to="/track-order-status" activeclassname="active">Track Order Status</Nav.Link>
 
         </Nav>
       </Navbar.Collapse>
